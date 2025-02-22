@@ -1,0 +1,30 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Home from "./Pages/Home";
+import RestaurantMain from "./Pages/RestaurantMain";
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router";
+import RestaurantList from "./Pages/RestaurantList";
+import IndiviudalRestaurant from "./Pages/IndiviudalRestaurant";
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/restaurants",
+    element: <RestaurantMain />,
+  },
+  {
+    path: "/categories/:restaurantListId",
+    element: <RestaurantList />,
+  },
+  {
+    path: "/restaurants/:restaurantId",
+    element: <IndiviudalRestaurant />,
+  },
+]);
+
+const root = ReactDOM.createRoot(document.querySelector("#root"));
+root.render(<RouterProvider router={appRouter} />);
