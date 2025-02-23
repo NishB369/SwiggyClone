@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const RestaurantHeader = () => {
+  const cartItems = useSelector((store) => store.cart.items);
+
   return (
     <div className="w-full bg-white flex items-center justify-between px-20 py-3 shadow-md">
       <div className="right_div">
@@ -25,12 +28,36 @@ const RestaurantHeader = () => {
         </svg>
       </div>
       <div className="left_div flex items-center justify-between gap-8 font-medium">
-        <button className="cursor-pointer"><span className="mr-2 bi bi-briefcase"></span>Swiggy Corporate</button>
-        <button className="cursor-pointer"><span className="mr-2 bi bi-search"></span>Search</button>
-        <button className="cursor-pointer"><span className="mr-2 bi bi-percent"></span>Offers</button>
-        <button className="cursor-pointer"><span className="mr-2 bi bi-patch-question"></span>Help</button>
-        <button className="cursor-pointer"><span className="mr-2 bi bi-person"></span>Sign In</button>
-        <button className="cursor-pointer"><span className="mr-2 bi bi-bag"></span>Cart</button>
+        <button className="cursor-pointer">
+          <span className="mr-2 bi bi-briefcase"></span>Swiggy Corporate
+        </button>
+        <button className="cursor-pointer">
+          <span className="mr-2 bi bi-search"></span>Search
+        </button>
+        <button className="cursor-pointer">
+          <span className="mr-2 bi bi-percent"></span>Offers
+        </button>
+        <button className="cursor-pointer">
+          <span className="mr-2 bi bi-patch-question"></span>Help
+        </button>
+        <button className="cursor-pointer">
+          <span className="mr-2 bi bi-person"></span>Sign In
+        </button>
+        <button className="cursor-pointer">
+          <span
+            className={`mr-2 ${
+              cartItems.length > 0
+                ? "bi bi-bag-fill text-orange-600"
+                : "bi bi-bag"
+            }`}
+          ></span>
+          Cart
+          <span
+            className={`ml-1 font-semibold text-xs rounded-full border p-[7px] py-1 ${
+              cartItems.length > 0 ? "visible" : "hidden"
+            }`}
+          >{cartItems.length}</span>
+        </button>
       </div>
     </div>
   );
