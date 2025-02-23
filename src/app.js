@@ -8,11 +8,16 @@ import RestaurantList from "./Pages/RestaurantList";
 import IndiviudalRestaurant from "./Pages/IndiviudalRestaurant";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import Cart from "./Pages/Cart";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
   },
   {
     path: "/restaurants",

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import RestaurantHeader from "../Components/Header/RestaurantHeader";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const IndiviudalRestaurant = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -26,6 +28,12 @@ const IndiviudalRestaurant = () => {
   useEffect(() => {
     fetchList();
   }, []);
+
+  const dispatch = useDispatch();
+
+  const handleAddBtn = (item) => {
+    dispatch(addItem(item));
+  };
 
   const fetchList = async () => {
     try {
@@ -115,7 +123,10 @@ const IndiviudalRestaurant = () => {
             <div className="discounts flex items-center justify-start gap-3 overflow-x-scroll scrollbar-hide">
               {bannerList[3].card.card.gridElements.infoWithStyle.offers.map(
                 (item, index) => (
-                  <div key={index} className="flex w-[300px] h-[75px] border border-black/25 shadow-md rounded-lg items-center justify-start pr-3 cursor-pointer flex-shrink-0">
+                  <div
+                    key={index}
+                    className="flex w-[300px] h-[75px] border border-black/25 shadow-md rounded-lg items-center justify-start pr-3 cursor-pointer flex-shrink-0"
+                  >
                     <div className="w-3/12 flex items-center justify-center">
                       <img
                         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/offers/generic"
@@ -210,7 +221,10 @@ const IndiviudalRestaurant = () => {
                         className="rounded-xl w-full h-full object-cover"
                       />
                     )}
-                    <div className="absolute bg-white text-green-600 uppercase shadow-md p-2 px-6 font-semibold -bottom-4 left-10 cursor-pointer rounded-lg">
+                    <div
+                      className="absolute bg-white text-green-600 uppercase shadow-md p-2 px-6 font-semibold -bottom-4 left-10 cursor-pointer rounded-lg hover:bg-gray-100 duration-200 ease-in-out"
+                      onClick={() => handleAddBtn(item.card.info)}
+                    >
                       add
                     </div>
                   </div>
